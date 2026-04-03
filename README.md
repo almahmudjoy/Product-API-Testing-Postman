@@ -51,12 +51,12 @@ This is a beginner API testing project built using Postman and json-server.
 - Product API Testing.postman_collection.json
 - README.md
 
-##Future Improvements
+## Future Improvements
 - Add negative test cases
 - Add more assertions
 - Add Newman HTML report
 - Add screenshots of test execution
 
-##Author
+## Author
 
 "Abdullah Al Mahmud Joy"
