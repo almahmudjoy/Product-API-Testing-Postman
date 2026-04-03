@@ -36,9 +36,6 @@ This is a beginner API testing project built using Postman and json-server.
   "price": 90,
   "category": "Grocery"
 } 
-
-
-
 ```
 ## How to Run
 1. Install json-server
