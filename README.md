@@ -30,7 +30,6 @@ This is a beginner API testing project built using Postman and json-server.
 7. Delete created product
 
 ## Sample Product Data
-```json
 {
   "name": "Sugar",
   "price": 90,
