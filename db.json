@@ -1,0 +1,41 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Rice",
+      "price": 60,
+      "category": "Grocery"
+    },
+    {
+      "id": "2",
+      "name": "Oil",
+      "price": 180,
+      "category": "Grocery"
+    },
+    {
+      "name": "Sugar",
+      "price": 90,
+      "category": "Dessert",
+      "id": "5t5U0_VLypM"
+    },
+    {
+      "name": "Sugar",
+      "price": 90,
+      "category": "Dessert",
+      "id": "RQtMPf6eLI0"
+    },
+    {
+      "name": "Sugar",
+      "price": 100,
+      "category": "Grocery",
+      "id": "O7OR1h5cUW4"
+    },
+    {
+      "name": "Sugar Updated",
+      "price": 100,
+      "category": "Grocery",
+      "id": "kDaXnuKf8IE"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
