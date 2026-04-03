@@ -30,13 +30,17 @@ This is a beginner API testing project built using Postman and json-server.
 7. Delete created product
 
 ## Sample Product Data
+```json
 {
   "name": "Sugar",
   "price": 90,
   "category": "Grocery"
-}
+} 
 
-##How to Run
+
+
+```
+## How to Run
 1. Install json-server
 2. Run the server:
 
@@ -45,7 +49,7 @@ This is a beginner API testing project built using Postman and json-server.
 3. Import the Postman collection
 4. Run the requests in Postman Collection Runner
 
-##Files Included
+## Files Included
 - db.json
 - Product API Testing.postman_collection.json
 - README.md
