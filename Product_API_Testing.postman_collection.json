@@ -1,0 +1,566 @@
+{
+  "info": {
+    "_postman_id": "68d5df6a-132d-400a-816a-91ad8ba76b8d",
+    "name": "Product API Testing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53084089",
+    "_collection_link": "https://go.postman.co/collection/53084089-68d5df6a-132d-400a-816a-91ad8ba76b8d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Positive Tests",
+      "item": [
+        {
+          "name": "TC01_GET_All_Products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response is JSON\", function () {\r",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+                  "});\r",
+                  "\r",
+                  "let jsonData = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Response is an array\", function () {\r",
+                  "    pm.expect(jsonData).to.be.an(\"array\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Array is not empty\", function () {\r",
+                  "    pm.expect(jsonData.length).to.be.above(0);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response time is below 1000ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/products",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TC02_GET_Product_By_Valid_ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonData = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Product has required fields\", function () {\r",
+                  "    pm.expect(jsonData).to.have.property(\"id\");\r",
+                  "    pm.expect(jsonData).to.have.property(\"name\");\r",
+                  "    pm.expect(jsonData).to.have.property(\"price\");\r",
+                  "    pm.expect(jsonData).to.have.property(\"category\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Field types are correct\", function () {\r",
+                  "    pm.expect(jsonData.id).to.be.a(\"string\");\r",
+                  "    pm.expect(jsonData.name).to.be.a(\"string\");\r",
+                  "    pm.expect(jsonData.price).to.be.a(\"number\");\r",
+                  "    pm.expect(jsonData.category).to.be.a(\"string\");\r",
+                  "});\r",
+                  "\r",
+                  "const schema = {\r",
+                  "    type: \"object\",\r",
+                  "    required: [\"id\", \"name\", \"price\", \"category\"],\r",
+                  "    properties: {\r",
+                  "        id: { type: \"string\" },\r",
+                  "        name: { type: \"string\" },\r",
+                  "        price: { type: \"number\" },\r",
+                  "        category: { type: \"string\" }\r",
+                  "    }\r",
+                  "};\r",
+                  "\r",
+                  "pm.test(\"Product schema is valid\", function () {\r",
+                  "    pm.response.to.have.jsonSchema(schema);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseURL}}/products/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "products",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "End-to-End Workflow Tests",
+      "item": [
+        {
+          "name": "TC03_POST_Create_Product_Valid_Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonData = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Generated ID exists\", function () {\r",
+                  "    pm.expect(jsonData.id).to.exist;\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Created product fields are correct\", function () {\r",
+                  "    pm.expect(jsonData.name).to.eql(pm.collectionVariables.get(\"dynamicProductName\"));\r",
+                  "    pm.expect(jsonData.price).to.eql(90);\r",
+                  "    pm.expect(jsonData.category).to.eql(\"Grocery\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.collectionVariables.set(\"productId\", jsonData.id);\r",
+                  "pm.collectionVariables.set(\"productName\", jsonData.name);\r",
+                  "\r",
+                  "const schema = {\r",
+                  "    type: \"object\",\r",
+                  "    required: [\"id\", \"name\", \"price\", \"category\"],\r",
+                  "    properties: {\r",
+                  "        id: { type: \"string\" },\r",
+                  "        name: { type: \"string\" },\r",
+                  "        price: { type: \"number\" },\r",
+                  "        category: { type: \"string\" }\r",
+                  "    }\r",
+                  "};\r",
+                  "\r",
+                  "pm.test(\"Product schema is valid\", function () {\r",
+                  "    pm.response.to.have.jsonSchema(schema);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const randomNum = Math.floor(Math.random() * 100000);\r",
+                  "pm.collectionVariables.set(\"dynamicProductName\", \"Sugar_\" + randomNum);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"{{dynamicProductName}}\",\r\n  \"price\": 90,\r\n  \"category\": \"Grocery\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/products",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TC04_GET_Created_Product_By_Dynamic_ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonData = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Fetched correct created product\", function () {\r",
+                  "    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"productId\"));\r",
+                  "    pm.expect(jsonData.name).to.eql(pm.collectionVariables.get(\"productName\"));\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/products/{{productId}}",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "products",
+                "{{productId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TC05_PUT_Update_Created_Product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonData = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Product updated successfully\", function () {\r",
+                  "    pm.expect(jsonData.name).to.eql(\"Sugar Updated\");\r",
+                  "    pm.expect(jsonData.price).to.eql(100);\r",
+                  "    pm.expect(jsonData.category).to.eql(\"Grocery\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Sugar Updated\",\r\n    \"price\": 100,\r\n    \"category\": \"Grocery\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/products/{{productId}}",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "products",
+                "{{productId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TC06_DELETE_Created_Product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Delete successful\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 204]);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/products/{{productId}}",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "products",
+                "{{productId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TC11_GET_Deleted_Product_Verification",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deleted product verification request completed\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 404]);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Invalid Product\",\r\n  \"price\": \"abc\",\r\n  \"category\": \"Grocery\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/products/{{productId}}",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "products",
+                "{{productId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Negative Tests",
+      "item": [
+        {
+          "name": "TC07_GET_Product_By_Invalid_ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Request completed\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 404]);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/products/999999",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "products",
+                "999999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TC08_POST_Create_Product_Missing_Name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Request completed\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([201, 400]);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"price\": 50,\r\n    \"category\": \"Grocery\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/products",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TC09_POST_Create_Product_Invalid_Price_Type",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Request completed\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([201, 400]);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Invalid Product\",\r\n  \"price\": \"abc\",\r\n  \"category\": \"Grocery\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/products",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TC10_DELETE_Product_Invalid_ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Delete invalid ID request completed\", function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 404]);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Invalid Product\",\r\n  \"price\": \"abc\",\r\n  \"category\": \"Grocery\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/products/999999",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "products",
+                "999999"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "productId",
+      "value": ""
+    },
+    {
+      "key": "dynamicProductName",
+      "value": ""
+    },
+    {
+      "key": "productName",
+      "value": ""
+    }
+  ]
+}

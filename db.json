@@ -35,6 +35,149 @@
       "price": 100,
       "category": "Grocery",
       "id": "kDaXnuKf8IE"
+    },
+    {
+      "price": 50,
+      "category": "Grocery",
+      "id": "ti0XCAFPjA4"
+    },
+    {
+      "name": "Invalid Product",
+      "price": "abc",
+      "category": "Grocery",
+      "id": "tyIhDmLpTsU"
+    },
+    {
+      "price": 50,
+      "category": "Grocery",
+      "id": "_tNXS3HgtNs"
+    },
+    {
+      "name": "Invalid Product",
+      "price": "abc",
+      "category": "Grocery",
+      "id": "M1mKkDYBWG0"
+    },
+    {
+      "price": 50,
+      "category": "Grocery",
+      "id": "5jKpTfh4Stw"
+    },
+    {
+      "name": "Invalid Product",
+      "price": "abc",
+      "category": "Grocery",
+      "id": "pET9qVuRFsg"
+    },
+    {
+      "price": 50,
+      "category": "Grocery",
+      "id": "8jaMShk2fiA"
+    },
+    {
+      "name": "Invalid Product",
+      "price": "abc",
+      "category": "Grocery",
+      "id": "ytehzhIB4-k"
+    },
+    {
+      "price": 50,
+      "category": "Grocery",
+      "id": "Ftj6aENqwUE"
+    },
+    {
+      "name": "Invalid Product",
+      "price": "abc",
+      "category": "Grocery",
+      "id": "TTJtDedDGWA"
+    },
+    {
+      "price": 50,
+      "category": "Grocery",
+      "id": "H0ge5IANsGc"
+    },
+    {
+      "name": "Invalid Product",
+      "price": "abc",
+      "category": "Grocery",
+      "id": "2LrtmqdH9W4"
+    },
+    {
+      "price": 50,
+      "category": "Grocery",
+      "id": "E8FmFDyg4yA"
+    },
+    {
+      "name": "Invalid Product",
+      "price": "abc",
+      "category": "Grocery",
+      "id": "Sr9Dy62pXjE"
+    },
+    {
+      "price": 50,
+      "category": "Grocery",
+      "id": "A_-K_wmSYIY"
+    },
+    {
+      "name": "Invalid Product",
+      "price": "abc",
+      "category": "Grocery",
+      "id": "nmGlQ7a8XVE"
+    },
+    {
+      "price": 50,
+      "category": "Grocery",
+      "id": "tzJqqSBVAXM"
+    },
+    {
+      "name": "Invalid Product",
+      "price": "abc",
+      "category": "Grocery",
+      "id": "3iTOXPsG3cI"
+    },
+    {
+      "price": 50,
+      "category": "Grocery",
+      "id": "TRGXUxs77d8"
+    },
+    {
+      "name": "Invalid Product",
+      "price": "abc",
+      "category": "Grocery",
+      "id": "SOw8BGLDSKM"
+    },
+    {
+      "price": 50,
+      "category": "Grocery",
+      "id": "WXwBA8Vc-W4"
+    },
+    {
+      "name": "Invalid Product",
+      "price": "abc",
+      "category": "Grocery",
+      "id": "wip8A2Ld0WM"
+    },
+    {
+      "price": 50,
+      "category": "Grocery",
+      "id": "QDTNBubmdaw"
+    },
+    {
+      "name": "Invalid Product",
+      "price": "abc",
+      "category": "Grocery",
+      "id": "hH_8SfrunU0"
+    },
+    {
+      "price": 50,
+      "category": "Grocery",
+      "id": "3KYGVbywC4E"
+    },
+    {
+      "name": "Invalid Product",
+      "price": "abc",
+      "category": "Grocery",
+      "id": "BdgK6loXe70"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
