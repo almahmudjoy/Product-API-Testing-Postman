@@ -1,4 +1,4 @@
-# Product API Testing with Postman
+# 🛒 Product API Testing with Postman
 
 This project demonstrates API testing of a Product module using **Postman**, **Newman**, and **json-server**. It includes positive testing, end-to-end workflow testing, negative testing, schema validation, dynamic variable handling, and Newman report generation.
 
@@ -6,7 +6,7 @@ This project demonstrates API testing of a Product module using **Postman**, **N
 
 The purpose of this project is to test REST API endpoints for product management. The project covers CRUD operations and validates both expected and unexpected scenarios.
 
-## Tools Used
+## 🧰 Tools Used
 
 - Postman
 - Newman
@@ -22,7 +22,7 @@ The purpose of this project is to test REST API endpoints for product management
 - `PUT /products/:id`
 - `DELETE /products/:id`
 
-## Test Structure
+## 📝 Test Structure
 
 ### Positive Tests
 - `TC01_GET_All_Products`
@@ -73,7 +73,7 @@ The purpose of this project is to test REST API endpoints for product management
   "category": "Grocery"
 }
 ```
-## How to Run
+## 💻 How to Run
 1. Install json-server
 2. Run the server:
 
@@ -109,5 +109,18 @@ The purpose of this project is to test REST API endpoints for product management
 - Add additional modules such as Users or Orders
 - Integrate GitHub Actions for automated test execution
 - 
-## Author
-Abdullah Al Mahmud Joy
+## 🔗 Let's Connect with Me
+<h2>🔗 Let's Connect with Me</h2>
+
+<p>
+  Interested in my work? Feel free to reach out by email or on LinkedIn.
+</p>
+
+<ul>
+  <li>📧 <a href="mailto:abdullahalmahmudjoy39@gmail.com">abdullahalmahmudjoy39@gmail.com</a></li>
+  <li>💼 <a href="https://www.linkedin.com/">https://www.linkedin.com/in/abdullah-al-mahmud-joy/</a></li>
+</ul>
+
+
+
+
