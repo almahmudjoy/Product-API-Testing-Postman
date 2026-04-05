@@ -93,6 +93,7 @@ graph TD
     E --> F[PUT Update Created Product]
     F --> G[DELETE Created Product]
     G --> H[Verify Deleted Product]
+```
 
 ## 📦 Sample Product Data
 
